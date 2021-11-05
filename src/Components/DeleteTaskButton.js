@@ -34,7 +34,7 @@ function DeleteTaskButton(props) {
           onMouseDown={ () => setDeleteButton(true) }
           onMouseUp={ () => setDeleteButton(false) }
         >
-          remove
+          Delete
         </button>
       </a>
     </div>

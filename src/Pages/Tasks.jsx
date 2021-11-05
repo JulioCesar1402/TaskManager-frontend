@@ -29,6 +29,15 @@ function Tasks() {
               <h3>{ status }</h3>
               <p>{ description }</p>
               <DeleteTaskButton taskId={ _id } />
+              {/* souce: https://ui.dev/react-router-pass-props-to-link/ */}
+              <Link
+                to="/update"
+                state={ { id: _id, title, status, description } }
+              >
+                <button type="button">
+                  Update
+                </button>
+              </Link>
             </li>
           ))
         }
