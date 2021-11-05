@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import DeleteTaskButton from '../Components/DeleteTaskButton';
 
@@ -15,18 +15,25 @@ function Tasks() {
   }, []);
 
   return (
-    <ul>
-      {
-        tasksList.map(({ _id, title, status, description }) => (
-          <li key={ _id }>
-            <h2>{ title }</h2>
-            <h3>{ status }</h3>
-            <p>{ description }</p>
-            <DeleteTaskButton taskId={ _id } />
-          </li>
-        ))
-      }
-    </ul>
+    <div>
+      <Link to="/create">
+        <button type="button">
+          Create new task
+        </button>
+      </Link>
+      <ul>
+        {
+          tasksList.map(({ _id, title, status, description }) => (
+            <li key={ _id }>
+              <h2>{ title }</h2>
+              <h3>{ status }</h3>
+              <p>{ description }</p>
+              <DeleteTaskButton taskId={ _id } />
+            </li>
+          ))
+        }
+      </ul>
+    </div>
   );
 }
 
