@@ -8,8 +8,8 @@ function UpdateTasks() {
   const location = useLocation();
   const { id, title, status, description } = location.state;
   const [newTitle, setNewTitle] = useState(title);
-  const [newStatus, setnewStatus] = useState(status);
-  const [newDescription, setnewDescription] = useState(description);
+  const [newStatus, setNewStatus] = useState(status);
+  const [newDescription, setNewDescription] = useState(description);
   const [submitButton, setSubmitButton] = useState(false);
   /*
     .. source: https://blog.rocketseat.com.br/react-hook-swr-melhor-ux-no-consumo-de-api-no-front-end-react/
@@ -62,7 +62,7 @@ function UpdateTasks() {
             name="newStatus"
             id="newStatus"
             value={ newStatus }
-            onChange={ (insertNewStatus) => setnewStatus(insertNewStatus.target.value) }
+            onChange={ (insertNewStatus) => setNewStatus(insertNewStatus.target.value) }
           />
         </label>
       </div>
@@ -74,7 +74,7 @@ function UpdateTasks() {
             name="newDescription"
             id="newDescription"
             value={ newDescription }
-            onChange={ (insertDescrip) => setnewDescription(insertDescrip.target.value) }
+            onChange={ (insertDescrip) => setNewDescription(insertDescrip.target.value) }
           />
         </label>
       </div>
