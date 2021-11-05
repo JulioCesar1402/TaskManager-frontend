@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+// import { Link } from 'react-router-dom';
 import axios from 'axios';
-// import api from '../services/api';
+import DeleteTaskButton from '../Components/DeleteTaskButton';
 
 function Tasks() {
   const [tasksList, setTasksList] = useState([]);
@@ -16,11 +17,12 @@ function Tasks() {
   return (
     <ul>
       {
-        tasksList.map(({ title, status, description }, id) => (
-          <li key={ id }>
+        tasksList.map(({ _id, title, status, description }) => (
+          <li key={ _id }>
             <h2>{ title }</h2>
             <h3>{ status }</h3>
             <p>{ description }</p>
+            <DeleteTaskButton taskId={ _id } />
           </li>
         ))
       }

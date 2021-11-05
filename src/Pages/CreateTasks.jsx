@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router';
 import axios from 'axios';
 
 function CreateTasks() {
@@ -11,6 +12,9 @@ function CreateTasks() {
     Apesar de não utilizar a biblioteca sugerida, não teria pensado em criar
     uma função assíncrona para enviar as informações a api
   */
+
+  const navigate = useNavigate();
+
   useEffect(() => {
     const postData = {
       title, status, description,
@@ -30,7 +34,7 @@ function CreateTasks() {
       }
     };
     return CreatePost();
-  }, [description, status, submitButton, title]);
+  }, [description, status, submitButton, title, navigate]);
 
   return (
     <div>
@@ -70,7 +74,7 @@ function CreateTasks() {
       <button
         type="submit"
         onMouseDown={ () => setSubmitButton(true) }
-        onMouseUp={ () => setSubmitButton(false) }
+        onMouseUp={ () => navigate('/') }
       >
         Add
       </button>
