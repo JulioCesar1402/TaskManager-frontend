@@ -6,19 +6,31 @@ function CreateTasks() {
   const [status, setStatus] = useState('');
   const [description, setDescription] = useState('');
   const [submitButton, setSubmitButton] = useState(false);
-
+  /*
+    .. source: https://blog.rocketseat.com.br/react-hook-swr-melhor-ux-no-consumo-de-api-no-front-end-react/
+    Apesar de não utilizar a biblioteca sugerida, não teria pensado em criar
+    uma função assíncrona para enviar as informações a api
+  */
   useEffect(() => {
-    if (submitButton) {
-      axios.post('http://localhost:3001/tasks', { title, status, description })
-        .then(
-          (res) => {
-            console.log('Axios:', res);
-            console.log('Axios data:', res.data);
-          },
-        )
-        .catch((err) => { console.log('Axios Error:', err); });
-    }
-  }, [submitButton, title, status, description]);
+    const postData = {
+      title, status, description,
+    };
+
+    const CreatePost = async () => {
+      if (submitButton) {
+        const post = await axios.post('http://localhost:3001/tasks', postData)
+          .then(
+            (res) => {
+              console.log('Axios:', res);
+              console.log('Axios data:', res.data);
+            },
+          )
+          .catch((err) => { console.log('Axios Error:', err); });
+        return post;
+      }
+    };
+    return CreatePost();
+  }, [description, status, submitButton, title]);
 
   return (
     <div>
@@ -47,7 +59,7 @@ function CreateTasks() {
       <div>
         <label htmlFor="description">
           Description:
-          <input
+          <textarea
             type="text"
             name="description"
             id="description"
